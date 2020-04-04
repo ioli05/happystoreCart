@@ -38,11 +38,11 @@ app.get('/cart/:guid', jsonParser, async function (req, res) {
 
 // Add to cart with guid
 app.post('/cart/:guid', jsonParser, async function (req, res) {
-    const item = req.body.items
+    const item = req.body.item
     const quantity = req.body.quantity
     postAsyncLog(`Add to cart ${req.params.guid} data endpoind called with item: ${item}, quantity: ${quantity}`)
 
-    const queryString = `INSERT INTO cart (guid, items, quantity) VALUES (${req.params.guid}, '${item}',
+    const queryString = `INSERT INTO cart (guid, item, quantity) VALUES (${req.params.guid}, '${item}',
         ${quantity})`;
 
     await promisePool.query(queryString)
